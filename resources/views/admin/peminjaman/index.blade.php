@@ -44,9 +44,9 @@
                                 <div class="badge bg-light text-dark border">{{ $d->buku->judul ?? '-' }}</div>
                             @endforeach
                         </td>
-                        <td>{{ $p->tanggal_pinjam->format('d M Y') }}</td>
+                        <td>{{ $p->tanggal_pinjam->format('d M Y') }}</td>  
                         <td>
-                            <a href="{{ Storage::url($p->foto_identitas) }}" target="_blank"
+                            <a href="{{ asset('storage/' . $p->foto_identitas) }}" target="_blank"
                                 class="btn btn-sm btn-outline-info">
                                 <i class="bi bi-image me-1"></i>Lihat
                             </a>
