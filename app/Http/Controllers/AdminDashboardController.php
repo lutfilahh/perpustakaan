@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Buku;
 use App\Models\Peminjaman;
 use App\Models\Admin;
+use App\Models\DetailPeminjaman;
 
 class AdminDashboardController extends Controller
 {
@@ -60,6 +61,15 @@ class AdminDashboardController extends Controller
 
         foreach ($peminjaman->detailPeminjaman as $detail) {
             $detail->buku->update(['status' => 'dipinjam']);
+
+            DetailPeminjaman::where('id_buku', $detail->id_buku)
+                ->where('id_detail', '!=', $detail->id_detail)
+                ->wherehas('peminjaman', fn($q) => $q->where('status_peminjaman', 'pending'))
+                ->with('peminjaman')
+                ->get()
+                ->each(function ($d) {
+                    $d->peminjaman->update(['status_peminjaman' => 'ditolak']);
+                });
         }
 
         return back()->with('success', 'Peminjaman berhasil disetujui!');
@@ -81,4 +91,28 @@ class AdminDashboardController extends Controller
 
         return back()->with('success', 'Peminjaman berhasil ditolak.');
     } 
+
+    public function kembalikan($id)
+    {
+        $peminjaman = Peminjaman::with('detailPeminjaman.buku')->findOrFail($id);
+
+        if ($peminjaman->status_peminjaman !== 'disetujui') {
+            return back()->with('error', 'Hanya peminjaman yang disetujui yang bisa dikembalikan.');
+        }
+
+        // Kembalikan status buku jadi tersedia
+        foreach ($peminjaman->detailPeminjaman as $detail) {
+            if ($detail->buku) {
+                $detail->buku->update(['status_buku' => 'tersedia']);
+            }
+        }
+
+        // Tandai peminjaman sebagai sudah dikembalikan
+        $peminjaman->update([
+            'status_peminjaman' => 'dikembalikan',
+            'tanggal_kembali'   => now()->toDateString(),
+        ]);
+
+        return back()->with('success', 'Buku berhasil dikembalikan, status buku kembali tersedia.');
+    }
 }

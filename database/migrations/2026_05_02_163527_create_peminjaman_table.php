@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('foto_identitas'); // path file
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali')->nullable();
-            $table->enum('status_peminjaman', ['pending', 'disetujui', 'ditolak'])->default('pending');
+            $table->enum('status_peminjaman', ['pending', 'disetujui', 'ditolak', 'dikembalikan'])->default('pending');
             $table->foreignId('id_admin')->nullable()->constrained('admins', 'id_admin')->nullOnDelete();
             $table->timestamps();
         });

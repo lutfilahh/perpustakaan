@@ -89,6 +89,17 @@
                                 <span class="text-muted small">Sudah diproses</span>
                             @endif
                         </td>
+                        <td class="text-center">
+                            @if($p->status_peminjaman === 'disetujui' && !$p->tanggal_kembali)
+                                <form action="{{ route('admin.peminjaman.kembalikan', $p->id_peminjaman) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-primary"
+                                        onclick="return confirm('Tandai buku sudah dikembalikan?')">
+                                        <i class="bi bi-box-arrow-in-down me-1"></i>Kembalikan
+                                    </button>
+                                </form>
+                            @endif
+                        </td>
                     </tr>
                     @empty
                     <tr><td colspan="8" class="text-center py-5 text-muted">

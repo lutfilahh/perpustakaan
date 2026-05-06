@@ -31,7 +31,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AdminLoginController::class, 'login'])->name('login.post');
     Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
-
+    
     // ─────────────────────────────────────────
     // ROUTES ADMIN (Perlu Login)
     // ─────────────────────────────────────────
@@ -40,10 +40,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Manajemen Buku (CRUD)
         Route::resource('buku', BukuController::class);
+        Route::resource('buku', BukuController::class)->except(['show']);
 
         // Manajemen Peminjaman
         Route::get('/peminjaman', [AdminDashboardController::class, 'peminjaman'])->name('peminjaman.index');
         Route::post('/peminjaman/{id}/setujui', [AdminDashboardController::class, 'setujui'])->name('peminjaman.setujui');
         Route::post('/peminjaman/{id}/tolak', [AdminDashboardController::class, 'tolak'])->name('peminjaman.tolak');
+        Route::post('/peminjaman/{id}/kembalikan', [AdminDashboardController::class, 'kembalikan'])->name('peminjaman.kembalikan');
     });
 });

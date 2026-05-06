@@ -46,6 +46,15 @@ class PeminjamanController extends Controller
             ->where('status', 'tersedia')
             ->firstOrFail();
 
+            
+        $sudahAda = DetailPeminjaman::whereHas('peminjaman', function ($q) {
+            $q->where('status_peminjaman', 'pending');
+        })->where('id_buku', $request->id_buku)->exists();
+
+        if ($sudahAda) {
+            return back()->with('error', 'Buku ini sedang menunggu persetujuan peminjaman lain. Coba lagi nanti.');
+        }
+
         // Upload foto identitas
         $fotoPath = $request->file('foto_identitas')
             ->store('identitas', 'public');
