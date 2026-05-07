@@ -20,8 +20,11 @@ Route::get('/', function () {
 Route::prefix('user')->name('user.')->group(function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/buku/{id}', [UserController::class, 'detailBuku'])->name('buku.detail-buku');
+    Route::get('/pinjam/sukses', [PeminjamanController::class, 'sukses'])->name('pinjam.sukses');
     Route::get('/pinjam/{id_buku}', [PeminjamanController::class, 'formPinjam'])->name('pinjam.form');
     Route::post('/pinjam', [PeminjamanController::class, 'store'])->name('pinjam.store');
+    Route::get('/cek-status', [PeminjamanController::class, 'formCekStatus'])->name('cek-status');
+    Route::post('/cek-status', [PeminjamanController::class, 'cekStatus'])->name('cek-status.post');
 });
 
 // ─────────────────────────────────────────────

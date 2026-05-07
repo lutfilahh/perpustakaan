@@ -2,7 +2,7 @@
 
 @section('title', 'Tambah Buku')
 @section('page-title', 'Tambah Buku Baru')
-
+ 
 @section('content')
 <div class="row">
     <div class="col-md-7">

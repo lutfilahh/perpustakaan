@@ -24,6 +24,7 @@
         .badge-pending   { background: #fef3c7; color: #92400e; }
         .badge-disetujui { background: #dcfce7; color: #166534; }
         .badge-ditolak   { background: #fee2e2; color: #991b1b; }
+        .badge-dikembalikan { background: #dbeafe; color: #2563eb; }
     </style>
     @stack('styles')
 </head>

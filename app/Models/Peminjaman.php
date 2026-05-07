@@ -16,6 +16,7 @@ class Peminjaman extends Model
         'id_admin',
         'nama_peminjam',
         'tanggal_pinjam',
+        'kode_peminjaman',
         'tanggal_kembali',
         'kontak',
         'alamat',

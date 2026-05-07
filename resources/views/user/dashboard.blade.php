@@ -8,11 +8,14 @@
         <h3 class="fw-bold mb-0">📚 Koleksi Buku</h3>
         <p class="text-muted mb-0">Temukan buku yang ingin Anda pinjam</p>
     </div>
+    <a href="{{ route('user.cek-status') }}" class="btn btn-outline-primary btn-sm">
+        <i class="bi bi-search me-1"></i>Cek Status Pinjam
+    </a>
 </div>
 
 {{-- Filter & Search --}}
 <form method="GET" class="row g-2 mb-4">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="input-group">
             <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
             <input type="text" name="search" class="form-control"
@@ -20,17 +23,14 @@
                 value="{{ request('search') }}">
         </div>
     </div>
-    <div class="col-md-3">
-        <select name="status" class="form-select">
+    <div class="col-md-4">
+        <select name="status" class="form-select" onchange="this.form.submit()">
             <option value="">Semua Status</option>
-            <option value="tersedia" {{ request('status') == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
-            <option value="dipinjam" {{ request('status') == 'dipinjam' ? 'selected' : '' }}>Dipinjam</option>
+            <option value="tersedia" {{ request('status') == 'tersedia' ? 'selected' : '' }}>Tersedia
+            </option>
+            <option value="dipinjam" {{ request('status') == 'dipinjam' ? 'selected' : '' }}>Dipinjam
+            </option>
         </select>
-    </div>
-    <div class="col-md-3">
-        <button type="submit" class="btn btn-primary w-100">
-            <i class="bi bi-filter me-1"></i>Filter
-        </button>
     </div>
 </form>
 

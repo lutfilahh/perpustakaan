@@ -30,9 +30,9 @@
         <a class="navbar-brand" href="{{ route('user.dashboard') }}">
             <i class="bi bi-book-fill me-2"></i>Perpustakaan
         </a>
-        <div class="ms-auto">
+        <div class="ms-auto d-flex gap-2">
             <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm">
-                <i class="bi bi-shield-lock me-1"></i>Keluar
+                <i class="bi bi-shield-lock me-1"></i>kembali
             </a>
         </div>
     </div>

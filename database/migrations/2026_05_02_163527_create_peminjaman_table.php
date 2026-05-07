@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id('id_peminjaman');
             $table->string('nama_peminjam');
+            $table->string('kode_peminjaman');
             $table->string('kontak');
             $table->string('alamat');
             $table->string('tempat_lahir');

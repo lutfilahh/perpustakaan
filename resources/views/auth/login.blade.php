@@ -65,7 +65,7 @@
             <div class="icon-wrap"><i class="bi bi-person-fill"></i></div>
             <div class="text-start">
                 <div class="label">Masuk sebagai Pengguna</div>
-                <div class="desc">Jelajahi dan pinjam buku tanpa login</div>
+                <div class="desc">Jelajahi dan pinjam buku </div>
             </div>
             <i class="bi bi-chevron-right ms-auto text-muted"></i>
         </a>
