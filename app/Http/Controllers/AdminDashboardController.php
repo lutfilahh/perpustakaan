@@ -7,7 +7,6 @@ use App\Models\Buku;
 use App\Models\Peminjaman;
 use App\Models\Admin;
 use App\Models\DetailPeminjaman;
-use Illuminate\Support\Facades\DB;
 
 class AdminDashboardController extends Controller
 {
