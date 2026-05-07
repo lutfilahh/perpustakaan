@@ -44,9 +44,9 @@
                                 <div class="badge bg-light text-dark border">{{ $d->buku->judul ?? '-' }}</div>
                             @endforeach
                         </td>
-                        <td>{{ $p->tanggal_pinjam->format('d M Y') }}</td>
+                        <td>{{ $p->tanggal_pinjam->format('d M Y') }}</td>  
                         <td>
-                            <a href="{{ Storage::url($p->foto_identitas) }}" target="_blank"
+                            <a href="{{ asset('storage/' . $p->foto_identitas) }}" target="_blank"
                                 class="btn btn-sm btn-outline-info">
                                 <i class="bi bi-image me-1"></i>Lihat
                             </a>
@@ -56,7 +56,8 @@
                                 $badgeClass = match($p->status_peminjaman) {
                                     'pending'   => 'badge-pending',
                                     'disetujui' => 'badge-disetujui',
-                                    'ditolak'   => 'badge-ditolak',
+                                    'ditolak'   => 'badge-ditolak', 
+                                    'dikembalikan' => 'badge-dikembalikan',
                                     default     => 'bg-secondary'
                                 };
                             @endphp
@@ -90,7 +91,7 @@
                             @endif
                         </td>
                         <td class="text-center">
-                            @if($p->status_peminjaman === 'disetujui' && !$p->tanggal_kembali)
+                            @if($p->status_peminjaman === 'disetujui')
                                 <form action="{{ route('admin.peminjaman.kembalikan', $p->id_peminjaman) }}" method="POST" class="d-inline">
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-primary"

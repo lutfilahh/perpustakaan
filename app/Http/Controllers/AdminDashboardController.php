@@ -7,6 +7,7 @@ use App\Models\Buku;
 use App\Models\Peminjaman;
 use App\Models\Admin;
 use App\Models\DetailPeminjaman;
+use Illuminate\Support\Facades\DB;
 
 class AdminDashboardController extends Controller
 {
@@ -99,20 +100,20 @@ class AdminDashboardController extends Controller
         if ($peminjaman->status_peminjaman !== 'disetujui') {
             return back()->with('error', 'Hanya peminjaman yang disetujui yang bisa dikembalikan.');
         }
-
-        // Kembalikan status buku jadi tersedia
-        foreach ($peminjaman->detailPeminjaman as $detail) {
-            if ($detail->buku) {
-                $detail->buku->update(['status_buku' => 'tersedia']);
-            }
-        }
-
+        
         // Tandai peminjaman sebagai sudah dikembalikan
         $peminjaman->update([
             'status_peminjaman' => 'dikembalikan',
             'tanggal_kembali'   => now()->toDateString(),
+            'id_admin'          => session('admin_id'),
         ]);
 
+        // Kembalikan status buku jadi tersedia
+        foreach ($peminjaman->detailPeminjaman as $detail) {
+            if ($detail->buku) {
+                $detail->buku->update(['status' => 'tersedia']);
+            }
+        }
         return back()->with('success', 'Buku berhasil dikembalikan, status buku kembali tersedia.');
     }
 }
