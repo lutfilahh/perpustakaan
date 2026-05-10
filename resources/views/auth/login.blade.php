@@ -6,6 +6,7 @@
     <title>Masuk — Perpustakaan Digital</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('Logo.svg') }}">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -14,8 +15,8 @@
             font-family: 'Segoe UI', sans-serif;
         }
         .login-card {
-            background: #fff; border-radius: 24px; padding: 3rem 2.5rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,.2); max-width: 420px; width: 100%;
+            background: #fff; border-radius: 30px; padding: 4rem 4rem; 
+            box-shadow: 0 20px 60px rgba(0,0,0,.2); max-width: 560px; width: 100%; 
             text-align: center;
         }
         .logo-wrap {
@@ -33,7 +34,7 @@
         }
         .role-btn:hover { border-color: #2563eb; background: #eff6ff; transform: translateX(4px); }
         .role-btn .icon-wrap {
-            width: 48px; height: 48px; border-radius: 12px;
+            width: 48px; height: 60px; border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
             font-size: 1.4rem; flex-shrink: 0;
         }
@@ -50,37 +51,34 @@
     </style>
 </head>
 <body>
-    <div class="login-card">
-        <div class="logo-wrap"><i class="bi bi-book-fill"></i></div>
-        <h1>Perpustakaan Digital</h1>
-        <p class="subtitle">Silakan pilih akses yang sesuai</p>
-
-        @if(session('success'))
-            <div class="alert alert-success py-2 mb-3" style="font-size:.9rem;">
-                <i class="bi bi-check-circle me-1"></i>{{ session('success') }}
-            </div>
-        @endif
-
-        <a href="{{ route('user.dashboard') }}" class="role-btn role-user">
-            <div class="icon-wrap"><i class="bi bi-person-fill"></i></div>
-            <div class="text-start">
-                <div class="label">Masuk sebagai Pengguna</div>
-                <div class="desc">Jelajahi dan pinjam buku </div>
-            </div>
-            <i class="bi bi-chevron-right ms-auto text-muted"></i>
-        </a>
-
-        <div class="divider">atau</div>
-
-        <a href="{{ route('admin.login') }}" class="role-btn role-admin">
-            <div class="icon-wrap"><i class="bi bi-shield-fill-check"></i></div>
-            <div class="text-start">
-                <div class="label">Masuk sebagai Admin</div>
-                <div class="desc">Kelola buku dan permintaan peminjaman</div>
-            </div>
-            <i class="bi bi-chevron-right ms-auto text-muted"></i>
-        </a>
+<div class="login-card">
+    <div class="logo-wrap">
+        <i class="bi bi-book-fill"></i>
     </div>
+    <h1>Perpustakaan Digital</h1>
+    <p class="subtitle">
+        Jelajahi dan pinjam buku favoritmu dengan mudah
+    </p>
+
+    @if(session('success'))
+        <div class="alert alert-success py-2 mb-3" style="font-size:.9rem;">
+            <i class="bi bi-check-circle me-1"></i>{{ session('success') }}
+        </div>
+    @endif
+
+    <a href="{{ route('user.dashboard') }}" class="role-btn role-user">
+        <div class="icon-wrap">
+            <i class="bi bi-person-fill"></i>
+        </div>
+
+        <div class="text-start">
+            <div class="label">Masuk ke Perpustakaan</div>
+            <div class="desc">Jelajahi dan pinjam buku</div>
+        </div>
+
+        <i class="bi bi-chevron-right ms-auto text-muted"></i>
+    </a>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

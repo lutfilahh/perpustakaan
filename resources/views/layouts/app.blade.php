@@ -6,15 +6,16 @@
     <title>@yield('title', 'Perpustakaan Digital')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('Logo.svg') }}">
     <style>
         :root {
             --primary: #2563eb;
             --primary-dark: #1d4ed8;
             --accent: #f59e0b;
         }
-        body { background: #f8fafc; font-family: 'Segoe UI', sans-serif; }
-        .navbar-brand { font-weight: 700; font-size: 1.4rem; color: var(--primary) !important; }
-        .navbar { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.08); }
+        body { background: #f8fafc; font-family: 'Segoe UI', sans-serif;}
+        .navbar-brand { font-weight: 700; font-size: 1.4rem; color: #fff !important;}        
+        .navbar { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #0ea5e9 100%); box-shadow: 0 2px 10px rgba(0,0,0,.1);}
         .btn-primary { background: var(--primary); border-color: var(--primary); }
         .btn-primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
         .badge-tersedia { background: #dcfce7; color: #166534; padding: 4px 10px; border-radius: 20px; font-size: .8rem; font-weight: 600; }
@@ -31,7 +32,7 @@
             <i class="bi bi-book-fill me-2"></i>Perpustakaan
         </a>
         <div class="ms-auto d-flex gap-2">
-            <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm">
+            <a href="{{ route('login') }}" class="btn btn-outline-dark btn-sm">
                 <i class="bi bi-shield-lock me-1"></i>kembali
             </a>
         </div>
